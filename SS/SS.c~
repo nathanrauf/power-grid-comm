@@ -1,0 +1,132 @@
+/*
+ *  server_example_basic_io.c
+ *
+ *  - How to use simple control models
+ *  - How to serve analog measurement data
+ */
+
+#include "iec61850_server.h"
+#include "hal_thread.h"
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+#include "static_model.h"
+
+/* import IEC 61850 device model created from SCL-File */
+extern IedModel iedModel;
+
+static int running = 0;
+static IedServer iedServer = NULL;
+
+double an1=0, an2=0, an3=0, an4=0;
+
+
+void
+sigint_handler(int signalId)
+{
+    running = 0;
+}
+
+
+
+static void
+connectionHandler (IedServer self, ClientConnection connection, bool connected, void* parameter)
+{
+    if (connected)
+        printf("Connection opened\n");
+    else
+        printf("Connection closed\n");
+}
+
+
+
+void TextRead()
+{
+    FILE *normfile = fopen ("M2S.txt", "r");
+
+    fscanf (normfile, "%lf %lf", &an1, &an2);
+
+    fclose (normfile);  /* close file */
+}
+
+void TextWrite()
+{
+    FILE *normfile = fopen ("S2M.txt", "w");
+
+    fprintf (normfile, "%lf %lf", an3, an4);
+
+    fclose (normfile);  /* close file */
+}
+
+
+int
+main(int argc, char** argv)
+{
+    printf("Using libIEC61850 version %s\n", LibIEC61850_getVersionString());
+
+    iedServer = IedServer_create(&iedModel);
+
+    /* Set the base path for the MMS file services */
+    MmsServer mmsServer = IedServer_getMmsServer(iedServer);
+    MmsServer_setFilestoreBasepath(mmsServer, "./vmd-filestore/");
+
+
+    IedServer_setConnectionIndicationHandler(iedServer, (IedConnectionIndicationHandler) connectionHandler, NULL);
+
+    /* MMS server will be instructed to start listening to client connections. */
+    IedServer_start(iedServer, 102);
+
+    if (!IedServer_isRunning(iedServer)) {
+        printf("Starting server failed! Exit.\n");
+        IedServer_destroy(iedServer);
+        exit(-1);
+    }
+
+    running = 1;
+
+    signal(SIGINT, sigint_handler);
+
+	IedServer_setWriteAccessPolicy(iedServer, IEC61850_FC_DC, ACCESS_POLICY_ALLOW);
+	IedServer_setWriteAccessPolicy(iedServer, IEC61850_FC_CF, ACCESS_POLICY_ALLOW);
+	IedServer_setWriteAccessPolicy(iedServer, IEC61850_FC_SP, ACCESS_POLICY_ALLOW);
+	IedServer_setWriteAccessPolicy(iedServer, IEC61850_FC_SV, ACCESS_POLICY_ALLOW);
+	IedServer_setWriteAccessPolicy(iedServer, IEC61850_FC_SE, ACCESS_POLICY_ALLOW);
+
+
+    while (running) {
+        uint64_t timestamp = Hal_getTimeInMs();
+
+
+
+        IedServer_lockDataModel(iedServer);
+
+        //read text file and write them to LNs
+        TextRead();
+        printf("M2S>>> an1: %lf, an2: %lf\n", an1, an2);
+
+        IedServer_updateFloatAttributeValue(iedServer, IEDMODEL_CTRL_GGIO1_AnOut1_subVal_f, an1);
+
+        IedServer_updateFloatAttributeValue(iedServer, IEDMODEL_CTRL_GGIO2_AnOut1_subVal_f, an2);
+
+
+        //Check the command coming from control center
+        an3 = IedServer_getFloatAttributeValue(iedServer, IEDMODEL_CTRL_GGIO3_AnOut1_subVal_f);
+
+        an4 = IedServer_getFloatAttributeValue(iedServer, IEDMODEL_CTRL_GGIO4_AnOut1_subVal_f);
+        printf("S2M>>> an3: %lf, an4: %lf\n", an3, an4);
+        TextWrite();
+
+        IedServer_unlockDataModel(iedServer);
+
+        Thread_sleep(2000);
+    }
+
+    /* stop MMS server - close TCP server socket and all client sockets */
+    IedServer_stop(iedServer);
+
+    /* Cleanup - free all resources */
+    IedServer_destroy(iedServer);
+
+} /* main() */
