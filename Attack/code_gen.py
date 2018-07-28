@@ -1,0 +1,4 @@
+i = 0
+while i in range(0, 28):
+	print("IedConnection_writeFloatValue(con, &error, \"OSU_SS1CTRL/GGIO" + str(i+1) + ".AnOut1.subVal.f\", IEC61850_FC_SV, power_measurements[" + str(i) + "]);")
+	i = i + 1
