@@ -59,9 +59,9 @@ int main(int argc, char **argv) {
     while (i < 2 * NUM_BUS) {
       int random_num = rand();
       if (random_num % 2 == 0)
-        power_measurements[i++] += 0.25 * power_measurements[i];
+        power_measurements[i++] += 0.25 * power_measurements[i] + 0.001;
       else
-        power_measurements[i++] -= 0.25 * power_measurements[i];
+        power_measurements[i++] -= 0.25 * power_measurements[i] - 0.001;
     }
 
     if (error == IED_ERROR_OK) {
@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
         IedConnection_writeFloatValue(con, &error,
                                       "OSU_SS1CTRL/GGIO28.AnOut1.subVal.f",
                                       IEC61850_FC_SV, power_measurements[27]);
-
+	printf("WROTE BAD VALUES TO MEASUREMENTS\n");
         if (error != IED_ERROR_OK)
           printf("failed to write OSU_SS1CTRL/GGIO1.AnIn1.mag.f!\n");
 
