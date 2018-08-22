@@ -65,11 +65,12 @@ void TextWrite() {
   i = 1;
   while (i < 2 * NUM_BUS) {
 
-    if (fprintf(normfile, "%lf,%lf\n", power_measurements[i-1],power_measurements[i]) < 0) {
+    if (fprintf(normfile, "%lf,%lf\n", power_measurements[i - 1],
+                power_measurements[i]) < 0) {
       printf("Error writing to measurements.txt\n");
       exit(1);
     }
-	i += 2;
+    i += 2;
   }
 
   fclose(normfile); /* close file */
@@ -208,15 +209,15 @@ int main(int argc, char **argv) {
           con, &error, "OSU_SS1CTRL/GGIO28.AnOut1.subVal.f", IEC61850_FC_SV);
 
       TextWrite();
-	printf("\n\n*******************************************************\n");
+      printf("\n\n*******************************************************\n");
       printf("Measurements.csv >>>\n");
       i = 0;
-      while (i < 2 * NUM_BUS){
-	if (i%2==0)
-        	printf("      %i: %f", i, power_measurements[i++]);
-	else
-	        printf("      %i: %f\n", i, power_measurements[i++]);
-	}
+      while (i < 2 * NUM_BUS) {
+        if (i % 2 == 0)
+          printf("      %i: %f", i, power_measurements[i++]);
+        else
+          printf("      %i: %f\n", i, power_measurements[i++]);
+      }
     } else {
       printf("Failed to connect to %s:%i\n", hostname, tcpPort);
     }
@@ -228,15 +229,12 @@ int main(int argc, char **argv) {
     printf("Generation Controls>>>\n");
     i = 0;
     while (i < NUM_GEN_CONTROLS) {
-
-	if (i%2==0)
-	      	printf("      %i: %f", i, generation_controls[i++]);
-	else
-      		printf("      %i: %f\n", i, generation_controls[i++]);
-
-
+      if (i % 2 == 0)
+        printf("      %i: %f", i, generation_controls[i++]);
+      else
+        printf("      %i: %f\n", i, generation_controls[i++]);
     }
-	printf("\n*******************************************************\n\n");
+    printf("\n*******************************************************\n\n");
 
     // Write Generation controls
     IedConnection_writeFloatValue(con, &error,

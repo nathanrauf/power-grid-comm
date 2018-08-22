@@ -128,98 +128,180 @@ int main(int argc, char **argv) {
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO1.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[0]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO2.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[1]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO3.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[2]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO4.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[3]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO5.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[4]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO6.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[5]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO7.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[6]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO8.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[7]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO9.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[8]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO10.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[9]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO11.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[10]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO12.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[11]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO13.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[12]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO14.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[13]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO15.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[14]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO16.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[15]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO17.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[16]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO18.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[17]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO19.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[18]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO20.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[19]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO21.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[20]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO22.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[21]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO23.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[22]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO24.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[23]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO25.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[24]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO26.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[25]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO27.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[26]);
+      if (error != IED_ERROR_OK)
+        printf("failed to write float value!\n");
+
       IedConnection_writeFloatValue(con, &error,
                                     "OSU_SS1CTRL/GGIO28.AnOut1.subVal.f",
                                     IEC61850_FC_SV, power_measurements[27]);
-      printf("WROTE BAD VALUES TO MEASUREMENTS\n");
       if (error != IED_ERROR_OK)
-        printf("failed to write OSU_SS1CTRL/GGIO1.AnIn1.mag.f!\n");
+        printf("failed to write float value!\n");
+
+      printf("WROTE BAD VALUES TO MEASUREMENTS\n");
 
       if (error != IED_ERROR_OK)
-        printf("failed to write OSU_SS1CTRL/GGIO2.AnIn1.mag.f!\n");
+        printf("failed to write float value!\n");
 
     } else {
       printf("Failed to connect to %s:%i\n", hostname, tcpPort);
     }
-    printf("********************* SLEEPING *********************");
+    printf("\n********************* SLEEPING *********************\n");
     Thread_sleep(100);
   }
 close_connection:
